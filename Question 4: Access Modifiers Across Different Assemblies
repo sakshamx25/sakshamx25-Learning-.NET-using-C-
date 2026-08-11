@@ -1,0 +1,26 @@
+using System;
+ 
+namespace StudentLibrary
+{
+    public class Student
+    {
+        public string Name;
+        private int Age;
+        protected string Department;
+        internal double CGPA;
+        protected internal string College;
+        private protected string Address;
+ 
+        public Student(string name, int age, string department,
+                        double cgpa, string college, string address)
+        {
+            Name = name; Age = age; Department = department;
+            CGPA = cgpa; College = college; Address = address;
+        }
+ 
+        public void Display()
+        {
+            Console.WriteLine($"{Name}, {Age}, {Department}, {CGPA}, {College}, {Address}");
+        }
+    }
+}
