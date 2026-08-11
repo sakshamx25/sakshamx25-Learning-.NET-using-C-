@@ -1,0 +1,25 @@
+using System;
+ 
+namespace Lab1_AccessModifiers
+{
+    class TestStudent
+    {
+        public void AccessMembers()
+        {
+            Student s = new Student("Saksham", 22, "MCA",
+                                     8.7, "GLA University", "Mathura, UP");
+ 
+            Console.WriteLine(s.Name);        // OK  - public
+            // Console.WriteLine(s.Age);        // Error - private
+            // Console.WriteLine(s.Department); // Error - protected
+            Console.WriteLine(s.CGPA);        // OK  - internal
+            Console.WriteLine(s.College);     // OK  - protected internal
+            // Console.WriteLine(s.Address);    // Error - private protected
+        }
+ 
+        static void Main(string[] args)
+        {
+            new TestStudent().AccessMembers();
+        }
+    }
+}
