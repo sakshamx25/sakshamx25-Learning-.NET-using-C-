@@ -24,3 +24,26 @@ namespace StudentLibrary
         }
     }
 }
+
+//StudentClient (Console App, references StudentLibrary) / Program.cs
+using System;
+using StudentLibrary;
+ 
+namespace StudentClient
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Student s = new Student("Saksham", 22, "MCA",
+                                     8.7, "GLA University", "Mathura, UP");
+ 
+            Console.WriteLine(s.Name);        // OK    - public
+            // Console.WriteLine(s.Age);        // Error - private
+            // Console.WriteLine(s.Department); // Error - protected
+            // Console.WriteLine(s.CGPA);       // Error - internal (other assembly)
+            // Console.WriteLine(s.College);    // Error - protected internal
+            // Console.WriteLine(s.Address);     // Error - private protected
+        }
+    }
+}
