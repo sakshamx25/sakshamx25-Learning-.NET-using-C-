@@ -1,0 +1,41 @@
+using System;
+ 
+namespace Lab1_AccessModifiers
+{
+    class GraduateStudent : Student
+    {
+        public GraduateStudent(string name, int age, string department,
+                                double cgpa, string college, string address)
+            : base(name, age, department, cgpa, college, address)
+        { }
+ 
+        public void ShowData()
+        {
+            // (A) Accessing inherited members directly (via inheritance)
+            Console.WriteLine(Name);        // OK    - public
+            // Console.WriteLine(Age);        // Error - private
+            Console.WriteLine(Department);  // OK    - protected
+            Console.WriteLine(CGPA);        // OK    - internal
+            Console.WriteLine(College);     // OK    - protected internal
+            Console.WriteLine(Address);     // OK    - private protected
+ 
+            // (B) Accessing members through a separate Student OBJECT
+            Student s = new Student("Amit", 23, "MBA",
+                                     8.2, "GLA University", "Agra, UP");
+ 
+            Console.WriteLine(s.Name);        // OK    - public
+            // Console.WriteLine(s.Age);        // Error - private
+            // Console.WriteLine(s.Department); // Error - protected via object ref
+            Console.WriteLine(s.CGPA);        // OK    - internal
+            Console.WriteLine(s.College);     // OK    - protected internal
+            // Console.WriteLine(s.Address);    // Error - private protected via object ref
+        }
+ 
+        static void Main(string[] args)
+        {
+            GraduateStudent g = new GraduateStudent("Saksham", 22, "MCA",
+                                     8.7, "GLA University", "Mathura, UP");
+            g.ShowData();
+        }
+    }
+}
