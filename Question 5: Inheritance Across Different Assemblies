@@ -1,0 +1,38 @@
+using System;
+using StudentLibrary;
+ 
+namespace StudentClient
+{
+    class ResearchStudent : Student
+    {
+        public ResearchStudent(string name, int age, string department,
+                                double cgpa, string college, string address)
+            : base(name, age, department, cgpa, college, address)
+        { }
+ 
+        public void ShowData()
+        {
+            // (A) Accessing inherited members directly
+            Console.WriteLine(Name);        // OK    - public
+            // Console.WriteLine(Age);        // Error - private
+            Console.WriteLine(Department);  // OK    - protected (derived, other assembly)
+            // Console.WriteLine(CGPA);       // Error - internal (other assembly)
+            Console.WriteLine(College);     // OK    - protected internal
+            // Console.WriteLine(Address);     // Error - private protected
+ 
+            // (B) Accessing through a plain Student object
+            Student s = new Student("Neha", 24, "MSc",
+                                     8.9, "GLA University", "Delhi");
+            Console.WriteLine(s.Name);        // OK    - public
+            // Console.WriteLine(s.Department); // Error - protected via object ref
+            // Console.WriteLine(s.College);    // Error - protected internal via object ref
+        }
+ 
+        static void Main(string[] args)
+        {
+            ResearchStudent r = new ResearchStudent("Saksham", 22, "MCA",
+                                     8.7, "GLA University", "Mathura, UP");
+            r.ShowData();
+        }
+    }
+}
